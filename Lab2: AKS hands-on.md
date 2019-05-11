@@ -15,41 +15,15 @@
 
 ## Task 1: Create AKS cluster
 
-1. In the AWS Management Console, on the **Services** menu, click **IAM**.
-2. In the navigation pane on the left, click **Users**.
-3. Click on your username.
+1. Open web browser and go to: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest 
+2. Install Azure CLI. 
+3. Open command line and type: az login 
+4. Procced with instruction in console window. 
+5. After login process type in console: <code> az aks create --resource-group student0X --name student0XCluster --generate-ssh-keys </code>
+6. After cluster is deployed (it make takes up to 30 minutes), install Kubernetes CLI by typing in console: <code> az aks kubernetes install-cli </code> On Windows, the default installation is c:\program files (x86)\kubectl.exe. You may need to add this file to the Windows path. 
+7. Get credentials to cluster: <code> az acs kubernetes get-credentials --resource-group student0X --name student0XCluster </code>
+8. Verify connection using command: <code>kubectl get nodes </code>
 
-This will bring to a summary page for user. The **Permissions** tab will be displayed.
-
-4. Review your permissions.
-5. Click the **Groups** tab.
-
-What is a name of a group you belong to?
-
-6. Click the **Security credentials** tab.
-
-
-You will find that Console Access in enabled.
-
-7. Do you have **Access key**: (Yes/No)
-8. Can you read **Secret access key**: (Yes/No)
-9. In the navigation pane on the left, click **Groups**.
-
-There is a group already created for you: S3-LogAudit.
-
-10. Click the **S3-LogAudit** group.
-T
-his will bring you to the summary page for the **S3-LogAudit** group.
-
-11. Click the **Permissions** tab.
-
-This group has a Managed Policy associated with it, called AmazonS3ReadOnlyAccess. Managed Policies are pre-built policies (built either by AWS or by your administrators) that can be attached to IAM Users and Groups. When the policy is updated, the changes to the policy are immediately apply against all Users and Groups that are attached to the policy.
-
-12. Under **Actions**, click the **Show Policy** link.
-
-A policy defines what actions are allowed or denied for specific AWS resources. This policy is granting permission to List and Get object from S3. This ability to view resources, but not modify them, is ideal for assigning to an Audit role.
-
-13. Close the **Show Policy** window.
 
 
 ### Business Scenario
