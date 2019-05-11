@@ -18,7 +18,7 @@ In this lab we will learn how to create nodejs application and put it inside Doc
 <li>Resource Group: student0X </li>
 <li>Location: <default as VM> </li>
 <li>Admin user: Enabled </li>
-<li>SKU: Standard </li>
+<li>SKU: Standard </li></ul>
 Next click on Create. 
   
 5. Go to deployed resource and on left menu click Access keys. 
