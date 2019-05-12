@@ -38,7 +38,7 @@ https://portal.azure.com
 *	Os: windows
 *	App Service Plan: use as default
 *	Application Insight: Off
-When you finish, click on button Create.
+<br>When you finish, click on button Create.
 7.	Next step the Azure Storage Account will be deployed.
 8.	On the left Hub menu click App Services.
 9.	On the App Services blade find created Azure Web App – web-app-student0x.
