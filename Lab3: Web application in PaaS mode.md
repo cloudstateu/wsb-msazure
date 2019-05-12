@@ -57,7 +57,13 @@ https://portal.azure.com
 5. Right-click on the web app in the Azure App Service extension and select the “Deploy to Web App” option.
 6. Set source directory to <code>/dist/fe-visual</code>
 7. Select Yes on the “Are you sure you want to deploy…” dialog to overwrite any previous deployments you may have done to your Azure Web App.
+8. Open your web app URL and check if page is working.
 
+## Task 4: Create real time dashboard.
+1. Open your app in VS Code.
+2. Open terminal and instal socket.io: <code>npm i ngx-socket-io --save </code>
+3. Create metrics model using command: <code>ng g class metrics</code>
+4. 
 <br><br>
 
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
