@@ -49,8 +49,8 @@ spec:
         - containerPort: 3000 
       imagePullSecrets: 
       - name: SECRET_NAME</code>
-3. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
-4. Verify status using command: <code>kubectl get pods</code>
+ 3. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
+ 4. Verify status using command: <code>kubectl get pods</code>
 
 
 
