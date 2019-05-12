@@ -50,8 +50,14 @@ https://portal.azure.com
 11.	You should the welcome page of the Azure Web App.
 
 ## Task 3: Deploy application to Web App.
-1. Click on Azure icon in left menu in VS Code.
-2. 
+1. Build application using command: <code>ng build</code>
+2. Click on Azure icon in left menu in VS Code.
+3. Click Singin to Azure.
+4. Select your Web Application.
+5. Right-click on the web app in the Azure App Service extension and select the “Deploy to Web App” option.
+6. Set source directory to <code>/dist/fe-visual</code>
+7. Select Yes on the “Are you sure you want to deploy…” dialog to overwrite any previous deployments you may have done to your Azure Web App.
+
 <br><br>
 
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
