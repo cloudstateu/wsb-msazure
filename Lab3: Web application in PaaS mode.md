@@ -9,18 +9,22 @@
 
 #### This lab will demonstrate:
 * Creating Angular application.
-* Compile and deploy application using git repository.
+* Compile and deploy application using Visual Studio Code.
 * Create deployments slots.
 * Secure application using Azure AD.
 * Integrate authorization with external providers.
+
+### Requirements
+* Visual studio code
+* Azure extension to VS Code https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice
 
 ## Task 1: Create Angular application 
 In this task you will create Angular single page application.
 
 1. Install angular framework by executing in terminal command: <code>npm install -g @angular/cli</code>
-2. Create new folder and initlizie new project inside using command: <code>ng new my-app</code>
+2. Create new folder and initlizie new project inside using command: <code>ng new fe-visual</code>
 3. The ng new command prompts you for information about features to include in the initial app project. Accept the defaults by pressing the Enter or Return key.
-4. Go to the workspace folder (my-app).
+4. Go to the workspace folder (fe-visual).
 5. Launch the server by using the CLI command ng serve, with the --open option: <code>ng serve --open</code>
 
 ## Task 2: Create Web App
@@ -45,6 +49,9 @@ https://portal.azure.com
 10.	Copy URL link from main dashboard of Azure Web App to any web browser.
 11.	You should the welcome page of the Azure Web App.
 
+## Task 3: Deploy application to Web App.
+1. Click on Azure icon in left menu in VS Code.
+2. 
 <br><br>
 
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
