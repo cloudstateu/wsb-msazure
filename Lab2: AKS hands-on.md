@@ -24,7 +24,33 @@
 7. Get credentials to cluster: <code> az acs kubernetes get-credentials --resource-group student0X --name student0XCluster </code>
 8. Verify connection using command: <code>kubectl get nodes </code>
 
+## Task 2: Create secret and deploy POD
 
+In this section, you will learn how to create deployment file and how to deploy it. 
+ 
+1. Create secret for ACR: <code>kubectl create secret docker-registry <SECRET_NAME> --docker-server loginServerFromPoint6Task3 --docker-email <YOUR_MAIL> --docker-username= userNameCopiedFromPoint6Task3 --docker-password passwordCopiedFromPoint6Task3 </code>
+2. Create deployment file (deployment.yml): 
+<code>apiVersion: apps/v1beta1 
+kind: Deployment 
+metadata: 
+  name: containerapp 
+spec: 
+  replicas: 1 
+  template: 
+    metadata: 
+      labels: 
+        app: containerapp 
+    spec: 
+      containers: 
+      - name: containerapp 
+        image: loginServerFromPoint6Task3/containerapp 
+        ports: 
+        - containerPort: 3000 
+      imagePullSecrets: 
+      - name: <SECRET_NAME> 
+   </code>
+3. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
+4. Verify status using command: <code>kubectl get pods</code>
 
 ### Business Scenario
 For the remainder of this lab, you will work with these Users and Groups to enable permissions supporting the following business scenario:
