@@ -52,6 +52,25 @@ spec:
  3. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
  4. Verify status using command: <code>kubectl get pods</code>
 
-
-
+## Task 3: Create service and load balance mechanism for it.
+In this section, you will learn how to create services for deployed PODs. 
+ 
+1. Open deployment.yml 
+Add code to file: 
+--- 
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: containerappservice 
+spec: 
+  type: LoadBalancer 
+  ports: 
+  - port: 3000 
+  selector: 
+    app: containerapp 
+ 
+2. Open console and type: kubectl apply –f pathToDeploymentFile 
+3. Verify status using command: kubectl get services 
+4. Open in browser ip from service details. 
+ 
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
