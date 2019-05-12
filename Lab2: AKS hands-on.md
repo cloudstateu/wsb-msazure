@@ -56,7 +56,9 @@ spec:
 In this section, you will learn how to create services for deployed PODs. 
  
 1. Open deployment.yml 
+
 Add code to file: 
+<code>
 --- 
 apiVersion: v1 
 kind: Service 
@@ -68,7 +70,7 @@ spec:
   - port: 3000 
   selector: 
     app: containerapp 
- 
+</code> 
 2. Open console and type: kubectl apply –f pathToDeploymentFile 
 3. Verify status using command: kubectl get services 
 4. Open in browser ip from service details. 
