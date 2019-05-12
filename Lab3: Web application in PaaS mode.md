@@ -63,7 +63,8 @@ https://portal.azure.com
 1. Open your app in VS Code.
 2. Open terminal and instal socket.io: <code>npm i ngx-socket-io --save </code>
 3. Create metrics model using command: <code>ng g class metrics</code>
-4. Open file metrics.ts and insert code: <code> export class Metrics {
+4. Open file metrics.ts and insert code: <code> 
+    export class Metrics { <br>
     public a1: number;
     public b1: number;
     public Time: Date;
