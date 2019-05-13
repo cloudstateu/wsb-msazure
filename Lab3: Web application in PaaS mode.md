@@ -117,6 +117,22 @@ And click OK.
 
 Next click on OK.
 
+## Task 6: Authorize using AAD
+1.	On the Azure Portal, go to the previously created instance of Azure Web App and click on Authentication / Authorization.
+2.	On Authentication / Authorizaton page provide below configuration:
+* App Service Authentication: On.
+* Action to take when request is not authenticated: Log in with Azure Active Directory.
+3.	On Authentication Providers section click on Azure Active Directory, then you will be moved in new page Azure Active Directory Settings.
+4.	On Azure Active Directory Setting page provide below configuration:
+* Management mode: Express
+* Management mode: web-app-student0x
+* Grant Common Data Services Permissions: Off
+And click on OK.
+5. Finally click on Save to saving authorization settings.
+6. Open the web browser in private mode and copy again URL link of Azure Web App.
+7. We will be asked to authenticate using credentials which was used to logging to Azure Portal.
+8. After correct authentication, you should see the running ASP.NET MVC application on Azure Web App.
+
 <br><br>
 
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>

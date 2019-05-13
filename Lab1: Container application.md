@@ -50,9 +50,15 @@ io.attach(server);
 ```
 9. Connect to MongoDB:
 ```
-mongoose.connect(dbUrl, (err) => {
-    console.log('mongodb connected', err);
-});
+var connectWithRetry = function() {
+    return mongoose.connect(dbUrl, function(err) {
+        if (err) {
+            console.error('Failed to connect to mongo on startup - retrying in 1 sec', err);
+            setTimeout(connectWithRetry, 1000);
+        }
+    });
+};
+connectWithRetry();
 ```
 10. Define MongoDB metrics entity model:
 ```
@@ -169,7 +175,7 @@ services:
     depends_on:
       - mongo
     environment:
-      DBURL: mongodb://admin:secret@localhost:27017
+      DBURL: 'mongodb://admin:secret@mongo:27017'
       TIMEOUT: 5000
   mongo:
     image: mongo
