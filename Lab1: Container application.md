@@ -1,5 +1,14 @@
-# Hands-on 1: Nodejs container application
-In this lab we will learn how to create nodejs application and put it inside Docker container.
+<img src="../../img/logo.jpg" alt="Cloudstate logo" width="200" align="right">
+<br><br>
+<br><br>
+<br><br>
+
+# Lab 1: Nodejs container application
+
+## LAB Overview
+
+#### This lab will demonstrate:
+
 
 ## Requirements
 * Docker: https://www.docker.com/products/docker-desktop

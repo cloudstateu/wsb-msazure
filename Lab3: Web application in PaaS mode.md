@@ -1,4 +1,4 @@
-<img src="../../img/logo.png" alt="Chmurowisko logo" width="200" align="right">
+<img src="../../img/logo.jpg" alt="Cloudstate logo" width="200" align="right">
 <br><br>
 <br><br>
 <br><br>
@@ -21,11 +21,14 @@
 ## Task 1: Create Angular application 
 In this task you will create Angular single page application.
 
-1. Install angular framework by executing in terminal command: <code>npm install -g @angular/cli</code>
-2. Create new folder and initlizie new project inside using command: <code>ng new fe-visual</code>
+1. Install angular framework by executing in terminal command: 
+* <code>npm install -g @angular/cli</code>
+2. Create new folder and initlizie new project inside using command: 
+* <code>ng new fe-visual</code>
 3. The ng new command prompts you for information about features to include in the initial app project. Accept the defaults by pressing the Enter or Return key.
 4. Go to the workspace folder (fe-visual).
-5. Launch the server by using the CLI command ng serve, with the --open option: <code>ng serve --open</code>
+5. Launch the server by using the CLI command ng serve, with the --open option: 
+* <code>ng serve --open</code>
 
 ## Task 2: Create Web App
 1.	Sign in the Azure portal at
@@ -61,17 +64,26 @@ https://portal.azure.com
 
 ## Task 4: Create real time dashboard.
 1. Open your app in VS Code.
-2. Open terminal and instal socket.io: <code>npm i ngx-socket-io --save </code>
-3. Create metrics model using command: <code>ng g class metrics</code>
-4. Open file metrics.ts and insert code: 
-<br>
-<code> 
+2. Open terminal and instal socket.io: 
+* <code>npm i ngx-socket-io --save </code>
+3. Create a metrics model using command: 
+* <code>ng g class metrics</code>
+4. Open file metrics.ts and insert a code: 
+* <code> 
     export class Metrics { 
     public a1: number;
     public b1: number;
     public Time: Date;
 }
 </code>
+5. Create a data model class using command:
+* <code>ng g class data</code>
+6. Open file data.ts and insert a code:
+7. Create a server error model class using command:
+* <code>ng g class server-error</code>
+8. Open a file server-error.ts and insert a code:
+* <code></code
+
 <br><br>
 
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
