@@ -5,7 +5,7 @@ In this lab we will learn how to create nodejs application and put it inside Doc
 * Docker: https://www.docker.com/products/docker-desktop
 * NodeJs current https://nodejs.org/en/
 
-## TASK 1: Create NodeJS application
+## TASK 1: Create NodeJS application and contenerized it.
 1. Create new folder be-rtd
 2. Create new nodejs procejct using command in terminal <code>npm init</code>
 3. Provide project name be-rtd.
@@ -73,14 +73,33 @@ In this lab we will learn how to create nodejs application and put it inside Doc
     }, timeout);
 }</code>
 15. Define function sendDataToClient:
-* <code>
-function sendDataToClient(message, client) {
+* <code>function sendDataToClient(message, client) {
     if (client) {
         client.send(JSON.stringify(message));
         console.log('Message sended to client', message);
     } else
         console.log('No client connected');
 }</code>
+16. Create Dockerfile in your app directory.
+17. Insert to file commands:
+* Set base image: <code>FROM node:10</code>
+* Set working directory: <code>WORKDIR /usr/src/app<code>
+* Copy package.json: <code>COPY package*.json ./</code>
+* Install dependencies: <code>RUN npm install</code>
+* Bundel app file: <code>COPY . .</code>
+* Create env for MongoDB connection string: <code>ENV DBURL 'mongodb://admin:secret@localhost:27017'</code>
+* Create env for event generation time: <code>ENV TIMEOUT 5000</code>
+* Expose port 3000: <code>EXPOSE 3000</code>
+* Run main proces:<code>ENTRYPOINT [ "node", "index.js" ]</code>
+18. Build container app typing in console: 
+* <code>docker build -t berealtime .</code>
+19. Pull image of MongoDB from dockerhub:
+* <code>docker pull mongo</code>
+20. Run image with command:
+* <code>docker run -e MONGO_INITDB_ROOT_PASSWORD=secret -e MONGO_INITDB_ROOT_USERNAME=admin -p 27017:27017 mongo </code>
+21. Run whole application using command:
+* <code>docker run -e  DBURL=mongodb://admin:secret@localhost:27017' -e TIMEOUT=5000 -p 3000:3000 berealtime</code>
+
 
 ## TASK 2: Create Azure Container Repository and push image
 <ul><li> Open Azure Portal. </li>
