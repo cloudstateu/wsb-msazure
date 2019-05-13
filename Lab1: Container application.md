@@ -7,7 +7,9 @@ In this lab we will learn how to create nodejs application and put it inside Doc
 </li>
 <li> NodeJs current https://nodejs.org/en/</li>
 
-## TASK 1: Create Docker Image
+## TASK 1: Create NodeJS application
+1. Create new folder realtime-data
+2. 
 
 ## TASK 2: Create Azure Container Repository and push image
 <ul><li> Open Azure Portal. </li>
