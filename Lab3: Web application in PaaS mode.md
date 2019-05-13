@@ -67,22 +67,42 @@ https://portal.azure.com
 2. Open terminal and instal socket.io: 
 * <code>npm i ngx-socket-io --save </code>
 3. Create a metrics model using command: 
-* <code>ng g class metrics</code>
+* <code>ng g i metrics</code>
 4. Open file metrics.ts and insert a code: 
 * <code> 
-    export class Metrics { 
+    export interface Metrics { 
     public a1: number;
     public b1: number;
     public Time: Date;
 }
 </code>
 5. Create a data model class using command:
-* <code>ng g class data</code>
+* <code>ng g i data</code>
 6. Open file data.ts and insert a code:
-7. Create a server error model class using command:
-* <code>ng g class server-error</code>
-8. Open a file server-error.ts and insert a code:
-* <code></code
+* <code>
+import { Metrics } from './metrics';
+export interface Data {
+     msgType: string;
+     data?: Metrics;
+     error?: any;
+}
+</code>
+7. Install ngx-socket-io using code: <code>npm i ngx-socket-io --save</code>
+8. Copy code from file */lab3-files/app.module.ts* to app.module.ts file.
+9. Copy code from file */lab3-files/app.component.ts* to app.component.ts.
+9. Copy code from file */lab3-files/app.component.html* to app.component.html.
+9. Copy code from file */lab3-files/polyfills.ts* to polyfills.ts.
+10. Build solution.
+
+## Task 5: Add deployment slots
+1.	On the Azure Portal, go to the previously created instance of Azure Web App and click on Deployment slots. 
+2.	On the Deployment slot page click on the Add a slot button marked with a plus sign.
+3.	On the Add a slot blade provide below configuration:
+* Name: stage
+* Configuration Source: Don’t clone configuration from an exisiting slot.
+4. 
+
+Next click on OK.
 
 <br><br>
 
