@@ -100,7 +100,20 @@ export interface Data {
 3.	On the Add a slot blade provide below configuration:
 * Name: stage
 * Configuration Source: Don’t clone configuration from an exisiting slot.
-4. 
+4. Go to VS Code and deploy new solution to deployment stage deployment slot. 
+5. On the Azure Portal go to the Deployment slots and click on created stage slot.
+5. On the stage slot of Azure Web App copy URL link to any web browser.
+14.	Then you should see updated stage ASP.NET MVC application.
+15.	On the Overview page of non-stage production Web App click on Swap.
+16.	On the Swap blade provide the following configurations:
+•	Swap type: Swap
+•	Source: stage
+•	Destination: production
+
+And click OK.
+
+17.	After swapping Web App slots, copy URL link to any web browser.
+
 
 Next click on OK.
 
