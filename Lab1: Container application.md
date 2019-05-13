@@ -102,22 +102,51 @@ In this lab we will learn how to create nodejs application and put it inside Doc
 
 
 ## TASK 2: Create Azure Container Repository and push image
-<ul><li> Open Azure Portal. </li>
-<li> Click Create Resource on left menu. </li>
-<li> Click Containers -> Azure Container Registry. </li>
-<li> On the Create container registry page provide the following configurations: 
-<ul><li>Registry name: student0Xregistry </li>
-<li>Resource Group: student0X </li>
-<li>Location: <default as VM> </li>
-<li>Admin user: Enabled </li>
-  <li>SKU: Standard </li></ul> </li>
+1. Open Azure Portal. 
+2. Click Create Resource on left menu. 
+3. Click Containers -> Azure Container Registry. 
+4. On the Create container registry page provide the following configurations: 
+* Registry name: student0Xregistry
+* Resource Group: student0X 
+* Location: default as VM 
+* Admin user: Enabled
+* SKU: Standard 
   
-<li> Go to deployed resource and on left menu click Access keys. </li>
-<li> Copy user name, password and login server. </li>
-<li>Open console and type: <code> docker login –p passwordCopiedFromPoint6 –u userNameCopiedFromPoint6 loginServerFromPoint6 </code> </li>
-<li>Tag image with repository by typing in console: <code> docker tag containerapp loginServerFromPoint6/containerapp </code></li>
-<li> Push image to repository by typing in console: <code> docker push loginServerFromPoint6/containerapp </code></li>
-<li> After push process is finished, go to portal to Azure Container Registry. </li>
-<li> Open your ACR. </li>
-<li>On left menu, in Services section click Repositories. </li>
-<li>Check if your image is on the list. </li>
+5. Go to deployed resource and on left menu click Access keys.
+6. Copy user name, password and login server.
+7. Open console and type:
+* <code> docker login –p *passwordCopiedFromPoint6* –u *userNameCopiedFromPoint6* *loginServerFromPoint6* </code> 
+* Tag image with repository by typing in console: 
+* <code> docker tag berealtime *loginServerFromPoint6*/berealtime </code>
+8. Push image to repository by typing in console: 
+* <code> docker push *loginServerFromPoint6*/containerapp </code>
+9. After push process is finished, go to portal to Azure Container Registry.
+10.  Open your ACR.
+11. On left menu, in Services section click Repositories.
+12. Check if your image is on the list.
+
+## TASK 3: Deploy system using docker-compose
+1. Open your app directory and create file *docker-compose.yml*
+2. Insert to file code:
+<code>
+version: '2'
+services:
+  backend:
+    image: loginServerFromPoint6/berealtime
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      DBURL: mongodb://admin:secret@localhost:27017
+      TIMEOUT: 5000
+  mongo:
+    image: mongo
+    ports: 
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+</code>
+3. Run application using:
+* <code>docker-compose up</code>
