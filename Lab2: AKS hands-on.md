@@ -29,50 +29,72 @@
 In this section, you will learn how to create deployment file and how to deploy it. 
  
 1. Create secret for ACR: <code>kubectl create secret docker-registry <SECRET_NAME> --docker-server loginServerFromPoint6Task3 --docker-email <YOUR_MAIL> --docker-username= userNameCopiedFromPoint6Task3 --docker-password passwordCopiedFromPoint6Task3 </code>
-2. Create deployment file (deployment.yml): 
-<code>
+2. Create deployment file (deployment-db.yml): 
+```
 apiVersion: apps/v1beta1 
 kind: Deployment 
 metadata: 
-  name: containerapp 
+  name: berealtime 
 spec: 
   replicas: 1 
   template: 
     metadata: 
       labels: 
-        app: containerapp 
+        app: berealtime 
     spec: 
       containers: 
-      - name: containerapp 
-        image: loginServerFromPoint6Task3/containerapp 
+      - name: mongo 
+        image: mongo 
         ports: 
-        - containerPort: 3000 
-      imagePullSecrets: 
-      - name: SECRET_NAME</code>
- 3. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
- 4. Verify status using command: <code>kubectl get pods</code>
-
-## Task 3: Create service and load balance mechanism for it.
-In this section, you will learn how to create services for deployed PODs. 
- 
-1. Open deployment.yml 
-
-Add code to file: 
-<code>
---- 
+        - containerPort: 27017 
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: admin
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: secret
+---
 apiVersion: v1 
 kind: Service 
 metadata: 
-  name: containerappservice 
+  name: mongo 
 spec: 
-  type: LoadBalancer 
+  type: ClusterIP 
   ports: 
   - port: 3000 
   selector: 
-    app: containerapp 
-</code> 
-2. Open console and type: kubectl apply –f pathToDeploymentFile 
-3. Verify status using command: kubectl get services 
-4. Open in browser ip from service details. 
+    app: mongo 
+```
+ 3. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
+ 4. Verify status using command: <code>kubectl get pods</code>
+ 5. Create application deployment file (deployment-app.yml):
+ ```
+ ---
+apiVersion: apps/v1beta1 
+kind: Deployment 
+metadata: 
+  name: berealtime 
+spec: 
+  replicas: 1 
+  template: 
+    metadata: 
+      labels: 
+        app: berealtime 
+    spec: 
+      containers: 
+      - name: berealtime 
+        image: loginServerFromPoint6Task3/berealtime 
+        ports: 
+        - containerPort: 3000 
+        env:
+          - name: DBURL
+            value: mongodb://admin:secret@mongo:27017
+          - name: TIMEOUT
+            value: '5000'
+      imagePullSecrets: 
+      - name: SECRET_NAME</code>
+```
+ 6. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
+ 7. Verify status using command: <code>kubectl get pods</code>
+
  
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
