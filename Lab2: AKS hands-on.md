@@ -106,6 +106,11 @@ spec:
  6. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
  7. Verify status using command: <code>kubectl get pods</code>
 
-## Task 3: Create persistance volume claim
+## Task 3: Create new namespace
+1. Create namespace for event-simulator using command: <code>kubectl create namespace devicespace</code>
+2. Create deployment file for event-simulator.
+3. Deploy app using command: <code>kubectl apply -f pod.yaml --namespace=devicespace</code>
+
+
  
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
