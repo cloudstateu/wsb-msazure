@@ -13,6 +13,9 @@
 * How to deploy POD and service.
 * How to create healtcheck
 
+### Requirements
+* CLI: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest
+
 ## Task 1: Create AKS cluster
 
 1. Open web browser and go to: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest 
