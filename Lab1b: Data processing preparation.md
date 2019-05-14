@@ -92,7 +92,7 @@ public static string Run(TimerInfo myTimer, TraceWriter log)
 {
   log.Info($"C# Timer trigger function executed at: {DateTime.Now}");
   Random value = new Random();
-  string json = JsonConvert.SerializeObject( new { deviceId= value.Next(0,10), a= value.Next(0,1000), b= value.Next(0,100), Time = DateTime.Now});
+  string json = JsonConvert.SerializeObject( new { a1= value.Next(200,500), b1= value.Next(150,300), Time = DateTime.Now});
   log.Info($"JSON output: {json}");
   return json;
 }
