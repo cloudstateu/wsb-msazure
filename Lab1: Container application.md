@@ -50,15 +50,7 @@ io.attach(server);
 ```
 9. Connect to MongoDB:
 ```
-var connectWithRetry = function() {
-    return mongoose.connect(dbUrl, function(err) {
-        if (err) {
-            console.error('Failed to connect to mongo on startup - retrying in 1 sec', err);
-            setTimeout(connectWithRetry, 1000);
-        }
-    });
-};
-connectWithRetry();
+mongoose.connect(dbUrl);
 ```
 10. Define MongoDB metrics entity model:
 ```
