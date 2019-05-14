@@ -34,13 +34,13 @@ In this section, you will learn how to create deployment file and how to deploy 
 apiVersion: apps/v1beta1 
 kind: Deployment 
 metadata: 
-  name: berealtime 
+  name: mongo 
 spec: 
   replicas: 1 
   template: 
     metadata: 
       labels: 
-        app: berealtime 
+        app: mongo 
     spec: 
       containers: 
       - name: mongo 
@@ -111,6 +111,51 @@ spec:
 2. Create deployment file for event-simulator.
 3. Deploy app using command: <code>kubectl apply -f pod.yaml --namespace=devicespace</code>
 
-
- 
+## Task 4: Connect persistance storage
+1. Create file pvc.yml:
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: azure-managed-disk
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: managed-premium
+  resources:
+    requests:
+      storage: 5Gi
+```
+2. Create PVC using command: <code>kubectl apply -f pvc.yaml</code>
+3. Mount persistent storage to mogno POD at path /data/db:
+```
+apiVersion: apps/v1beta1 
+kind: Deployment 
+metadata: 
+  name: mongo 
+spec: 
+  replicas: 1 
+  template: 
+    metadata: 
+      labels: 
+        app: mongo 
+    spec: 
+      containers: 
+      - name: mongo 
+        image: mongo 
+        volumeMounts:
+        - mountPath: "/data/db"
+          name: volume
+        ports: 
+        - containerPort: 27017 
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: admin
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: secret
+        volumes:
+        - name: volume
+          persistentVolumeClaim:
+            claimName: azure-managed-disk
+```
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
