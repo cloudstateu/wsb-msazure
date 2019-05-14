@@ -68,7 +68,6 @@ spec:
  4. Verify status using command: <code>kubectl get pods</code>
  5. Create application deployment file (deployment-app.yml):
  ```
- ---
 apiVersion: apps/v1beta1 
 kind: Deployment 
 metadata: 
@@ -91,10 +90,22 @@ spec:
           - name: TIMEOUT
             value: '5000'
       imagePullSecrets: 
-      - name: SECRET_NAME</code>
+      - name: SECRET_NAME
+---
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: berealtime 
+spec: 
+  type: LoadBalancer
+  ports: 
+  - port: 3000 
+  selector: 
+    app: berealtime 
 ```
  6. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
  7. Verify status using command: <code>kubectl get pods</code>
 
+## Task 3: Create persistance volume claim
  
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
