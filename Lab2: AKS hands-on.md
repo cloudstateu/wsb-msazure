@@ -158,4 +158,5 @@ spec:
           persistentVolumeClaim:
             claimName: azure-managed-disk
 ```
+2. Create PVC using command: <code>kubectl apply -f deploy-db.yaml</code>
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
