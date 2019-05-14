@@ -51,67 +51,15 @@ When you finish, click on button Create.
 3. On the instance of Event Hub – dataBroker page click on Consumer groups from the left menu.
 4. On the Consumer Group page click on button Consumer Group marked with plus assign and add one group called *data*.
 
-## Task 4: Create Azure Function
+## Task 4: Create sender container
 
-1.	On the left Hub menu click App Services.
-2.	On the App Services blade click on the Add button marked with a plus sign.
-3.	Type Function app in search filed.
-4.	After searching, click on position Function app and click on Create.
-5.	On the New blade of Function app provide the following configuration:
+1. Clone event-simulator app from this repository.
+2. Run <code>npm install</code>
+3. Copy event hub connection string from portal azure:
+4. Build container.
+5. Tag container and push it to your ACR.
 
-* App name: function-app-student0X
-* Subscription: XXXXXXXX
-* Resource Group: use existing
-* Os: Windows
-* Hosting Plan: Consumption Plan
-* Location: North Europe
-* Storage: Create new
-* Application Insight: Off
-
-When you finish, click on button Create.
-
-## Task 5: Create function
-
-1.	After successful deployment of Azure Functions, on the left Hub menu click Function apps.
-2.	Click on your resource of Azure Functions -  function-app-student0X.
-3.	Familiarize yourself with the main dashboard of Azure Functions.
-4.	On the main Overview page click on Functions from the left side menu.
-5.	On the Functions page click on the New function button marked with a plus sign.
-6.	Click on Time trigger method.
-7.	On the Time Trigger New Function blade provide the following configurations:
-* Language: C#
-* Name: MessageGenearator
-* Schedule: */5 * * * * *
-And click on Create.
-8. On the MessageGenearator page function change code in run.csx file:
-```
-#r "Newtonsoft.Json"
-using System;
-using Newtonsoft.Json;
-public static string Run(TimerInfo myTimer, TraceWriter log)
-{
-  log.Info($"C# Timer trigger function executed at: {DateTime.Now}");
-  Random value = new Random();
-  string json = JsonConvert.SerializeObject( new { a1= value.Next(200,500), b1= value.Next(150,300), Time = DateTime.Now});
-  log.Info($"JSON output: {json}");
-  return json;
-}
-```
-9.	On the MessageGenearator page function click on Integrate.
-10.	On the Integrate page click on New Output and select Azure Event Hubs.
-11.	Next on Azure Event Hubs Output section provide the following configurations:
-* Event parameter name: $return
-* Select Use Function return value
-* Event Hub name: dataBroker
-* Event Hub connection: 
-* Select Event Hub
-* Namespace: event-hub-student0X
-* Event Hub: databroker
-* Policy: RootMangeSharedAccessKey And click  *Select*.
-* Click  *Save*.
-
-
-## Task 6: Individual work
+## Task 5: Individual work
 Modify your application and Dockerfile, so your application can received data from event hub.
 * Sample code for receiving data from event hub in nodejs
 
@@ -144,7 +92,6 @@ main().catch(err => {
   console.log("Error occurred: ", err);
 });
 ```
-
 <br><br>
 
 <center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
