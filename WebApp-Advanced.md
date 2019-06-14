@@ -82,8 +82,14 @@ The application gateway subnet can contain only application gateways. No other r
 5. Click OK to save this rule.
 
 ## Task 6: Restrict Access
-1. To add an access restriction rule to your app, use the menu to open Network>Access Restrictions and click on Configure Access Restrictions.
-2. Click on [+] Add to add a new access restriction rule.
+1. Go to your Web application. 
+2. To add an access restriction rule to your app, use the menu to open Network>Access Restrictions and click on Configure Access Restrictions.
+3. Click on [+] Add to add a new access restriction rule.
+4. Add allow rule for your Application Gateway IP.
+5. Add deny rule for other traffic.
+
+## Task 7: Create Traffic Manager
+
 
 
 
