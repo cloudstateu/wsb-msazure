@@ -89,7 +89,21 @@ The application gateway subnet can contain only application gateways. No other r
 5. Add deny rule for other traffic.
 
 ## Task 7: Create Traffic Manager
+1. On the top left-hand side of the screen, select Create a resource > Networking > Traffic Manager profile > Create.
+2. In the Create Traffic Manager profile, enter or select, the following information, accept the defaults for the remaining settings, and then select Create:
+* Name	initialswbtest
+* Routing method	Select the Geographic routing method.
 
+## Task 8: Add Traffic Manager endpoints
+1. In the portal’s search bar, search for the Traffic Manager profile name that you created in the preceding section and select the profile in the results that the displayed.
+2. In Traffic Manager profile, in the Settings section, click Endpoints, and then click Add.
+3. Enter, or select, the following information, accept the defaults for the remaining settings, and then select OK:
+* Type	Azure endpoint
+* Name	application-gateway-westeurope
+* Target resource type	Public IP
+* Target resource	Choose a Public IP address to show the listing of resources with Public IP addresses under the same subscription. 
 
-
+## Task 9: Add web app in new region and configure endpoint
+1. Go to task 1 and create web app in eastus.
+2. Go to task 8 and create endpoint for it.
 
