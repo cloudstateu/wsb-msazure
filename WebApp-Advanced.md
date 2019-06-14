@@ -16,9 +16,28 @@
 
 ## Task 1: Create WebApp
 
-1. 
+1. Sign in the Azure portal at
+https://portal.azure.com
+2.	On the left Hub menu click App Services.
+3.	On the App Services blade click on the Add button marked with a plus sign.
+4.	Type Web App in search filed.
+5.	After searching, click on position Web App Container and click on Create.
+6.	On the Create blade provide the following configurations:
+*	Name: web-app-student0X
+*	Subscription: XXXXXX
+*	Resource Group:
+*	Use existing: stundent0x
+*	Os: windows
+*	App Service Plan: use as default
+*	Application Insight: Off
+<br>When you finish, click on button Create.
+7.	Next step the Azure Storage Account will be deployed.
+8.	On the left Hub menu click App Services.
+9.	On the App Services blade find created Azure Web App – web-app-student0x.
+10.	Copy URL link from main dashboard of Azure Web App to any web browser.
+11.	You should the welcome page of the Azure Web App.
 
-## Task 2: Create secret and deploy POD
+## Task 2: Create Application Gateway
 
 In this section, you will learn how to create deployment file and how to deploy it. 
  
