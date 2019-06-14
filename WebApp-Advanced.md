@@ -38,109 +38,45 @@ https://portal.azure.com
 11.	You should the welcome page of the Azure Web App.
 
 ## Task 2: Create Application Gateway
-
-In this section, you will learn how to create deployment file and how to deploy it. 
  
-1. Create secret for ACR: <code>kubectl create secret docker-registry <SECRET_NAME> --docker-server loginServerFromPoint6Task3 --docker-email <YOUR_MAIL> --docker-username= userNameCopiedFromPoint6Task3 --docker-password passwordCopiedFromPoint6Task3 </code>
-2. Create deployment file (deployment-db.yml): 
-```
-apiVersion: apps/v1beta1 
-kind: Deployment 
-metadata: 
-  name: mongo 
-spec: 
-  replicas: 1 
-  template: 
-    metadata: 
-      labels: 
-        app: mongo 
-    spec: 
-      containers: 
-      - name: mongo 
-        image: mongo 
-        ports: 
-        - containerPort: 27017 
-        env:
-          - name: MONGO_INITDB_ROOT_USERNAME
-            value: admin
-          - name: MONGO_INITDB_ROOT_PASSWORD
-            value: secret
----
-apiVersion: v1 
-kind: Service 
-metadata: 
-  name: mongo 
-spec: 
-  type: ClusterIP 
-  ports: 
-  - port: 3000 
-  selector: 
-    app: mongo 
-```
- 3. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
- 4. Verify status using command: <code>kubectl get pods</code>
- 5. Create application deployment file (deployment-app.yml):
- ```
-apiVersion: apps/v1beta1 
-kind: Deployment 
-metadata: 
-  name: berealtime 
-spec: 
-  replicas: 1 
-  template: 
-    metadata: 
-      labels: 
-        app: berealtime 
-    spec: 
-      containers: 
-      - name: berealtime 
-        image: loginServerFromPoint6Task3/berealtime 
-        ports: 
-        - containerPort: 3000 
-        env:
-          - name: DBURL
-            value: mongodb://admin:secret@mongo:27017
-          - name: TIMEOUT
-            value: '5000'
-      imagePullSecrets: 
-      - name: SECRET_NAME
----
-apiVersion: v1 
-kind: Service 
-metadata: 
-  name: berealtime 
-spec: 
-  type: LoadBalancer
-  ports: 
-  - port: 3000 
-  selector: 
-    app: berealtime 
-```
- 6. Open console and type: <code>kubectl create –f pathToDeploymentFile </code>
- 7. Verify status using command: <code>kubectl get pods</code>
+1. Sign in to the Azure portal at https://portal.azure.com
+2. Select Create a resource on the left menu of the Azure portal. The New window appears.
+3. Select Networking and then select Application Gateway in the Featured list.
+4. On the Basics page, enter these values for the following application gateway settings:
+* Name: Enter myAppGateway for the name of the application gateway.
+* Resource group: Select resource group from task 1.
+* Select WAF for the tier of the application gateway.
+5. On the Settings page, under Subnet configuration, select Choose a virtual network. 
+6. On the Choose virtual network page, select Create new, and then enter values for the following virtual network settings:
+* Name: Enter myVNet for the name of the virtual network.
+* Address space: Enter 10.0.0.0/16 for the virtual network address space.
+* Subnet name: Enter myAGSubnet for the subnet name.
+The application gateway subnet can contain only application gateways. No other resources are allowed.
+* Subnet address range: Enter 10.0.0.0/24 for the subnet address range.
+7. Click OK to create the virtual network and subnet.
+8. Choose the Frontend IP configuration. Under Frontend IP configuration, verify IP address type is set to Public. Under Public IP address, verify Create new is selected. 
+9. Enter myAGPublicIPAddress for the public IP address name.
+10. Accept the default values for the other settings and then select OK.
+11. Review the settings on the Summary page, and then select OK.
 
-## Task 3: Create new namespace
-1. Create namespace for event-simulator using command: <code>kubectl create namespace devicespace</code>
-2. Create deployment file for event-simulator.
-3. Deploy app using command: <code>kubectl apply -f pod.yaml --namespace=devicespace</code>
+## Task 3: Add App service as backend pool
 
-## Task 4: Connect persistance storage
-1. Create file pvc.yml:
-```
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: azure-managed-disk
-spec:
-  accessModes:
-  - ReadWriteOnce
-  storageClassName: managed-premium
-  resources:
-    requests:
-      storage: 5Gi
-```
-2. Create PVC using command: <code>kubectl apply -f pvc.yaml</code>
-3. Mount persistent storage to mogno POD at path /data/db:
+1.In the Azure portal, open the configuration view of you application gateway.
+2. Under Backend pools, click on Add to create a new backend pool.
+3. Provide a suitable name to the backend pool.
+4. Under Targets, click on the dropdown and choose App Services as the option.
+5. A dropdown immediately below the Targets dropdown will appear which will contain a list of your App Services. From this dropdown, choose the App Service you want to add as a backend pool member and click Add.
+
+## Task 4: Create HTTP settings for App service
+1. Under HTTP Settings, click Add to create a new HTTP Setting.
+2. Input a name for the HTTP Setting and you can enable or disable Cookie Based Affinity as per your requirement.
+3. Choose the protocol as HTTP or HTTPS as per your use case.
+4. Check the box for Use for App Service and it will turn on the Create a probe with pick host name from backend address and Pick host name from backend address options. This option will also create a probe automatically with the switch enabled and associate it to this HTTP Setting.
+5. Click OK to create the HTTP setting.
+
+
+
+
 ```
 apiVersion: apps/v1beta1 
 kind: Deployment 
