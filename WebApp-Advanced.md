@@ -74,39 +74,16 @@ The application gateway subnet can contain only application gateways. No other r
 4. Check the box for Use for App Service and it will turn on the Create a probe with pick host name from backend address and Pick host name from backend address options. This option will also create a probe automatically with the switch enabled and associate it to this HTTP Setting.
 5. Click OK to create the HTTP setting.
 
+## Task 5: Create Rule to tie the Listener, Backend Pool and HTTP Setting
+1. Under Rules, click Basic to create a new Basic rule.
+2. Provide a suitable name and select the listener which will be accepting the incoming requests for the App service.
+3. In the Backend pool dropdown, choose the backend pool you created above.
+4. In the HTTP setting dropdown, choose the HTTP setting you created above.
+5. Click OK to save this rule.
+
+## Task 6: Restrict Access
+1. To add an access restriction rule to your app, use the menu to open Network>Access Restrictions and click on Configure Access Restrictions.
+2. Click on [+] Add to add a new access restriction rule.
 
 
-
-```
-apiVersion: apps/v1beta1 
-kind: Deployment 
-metadata: 
-  name: mongo 
-spec: 
-  replicas: 1 
-  template: 
-    metadata: 
-      labels: 
-        app: mongo 
-    spec: 
-      containers: 
-      - name: mongo 
-        image: mongo 
-        volumeMounts:
-        - mountPath: "/data/db"
-          name: volume
-        ports: 
-        - containerPort: 27017 
-        env:
-          - name: MONGO_INITDB_ROOT_USERNAME
-            value: admin
-          - name: MONGO_INITDB_ROOT_PASSWORD
-            value: secret
-        volumes:
-        - name: volume
-          persistentVolumeClaim:
-            claimName: azure-managed-disk
-```
-2. Create PVC using command: <code>kubectl apply -f deploy-db.yaml</code>
-<center><p>&copy; 2019 Chmurowisko Sp. z o.o.<p></center>
 
