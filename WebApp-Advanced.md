@@ -61,7 +61,7 @@ The application gateway subnet can contain only application gateways. No other r
 
 ## Task 3: Add App service as backend pool
 
-1.In the Azure portal, open the configuration view of you application gateway.
+1. In the Azure portal, open the configuration view of you application gateway.
 2. Under Backend pools, click on Add to create a new backend pool.
 3. Provide a suitable name to the backend pool.
 4. Under Targets, click on the dropdown and choose App Services as the option.
